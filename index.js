@@ -18,6 +18,7 @@ async function run() {
         await client.connect();
         const database = client.db('motorbikeDB');
         const productCollection = database.collection('products');
+        const orderCollection = database.collection('orders');
 
         //GET Products API
         app.get('/products', async (req, res) => {
@@ -32,7 +33,14 @@ async function run() {
             const product = await productCollection.findOne(query);
             console.log('load product with id: ', id);
             res.send(product);
-        })
+        });
+
+        app.post('/orders', async (req, res) => {
+            const order = req.body;
+            const result = await orderCollection.insertOne(order);
+            console.log(result);
+            res.json(result);
+        });
     }
     finally {
         // await client.close();
