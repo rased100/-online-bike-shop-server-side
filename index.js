@@ -27,11 +27,18 @@ async function run() {
             res.send(products);
         });
 
+        //GET Orders API
+        app.get('/orders', async (req, res) => {
+            const cursor = orderCollection.find({});
+            const orders = await cursor.toArray();
+            res.send(orders);
+        });
+
         app.get('/product/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const product = await productCollection.findOne(query);
-            console.log('load product with id: ', id);
+            // console.log('load product with id: ', id);
             res.send(product);
         });
 
