@@ -19,6 +19,7 @@ async function run() {
         const database = client.db('motorbikeDB');
         const productCollection = database.collection('products');
         const orderCollection = database.collection('orders');
+        const userCommentCollection = database.collection('usercomments');
 
         //GET Products API
         app.get('/products', async (req, res) => {
@@ -67,6 +68,13 @@ async function run() {
             const order = req.body;
             const result = await orderCollection.insertOne(order);
             console.log(result);
+            res.json(result);
+        })
+
+        app.post('/usercomments', async (req, res) => {
+            const usercomment = req.body;
+            const result = await userCommentCollection.insertOne(usercomment);
+            console.log('cmt', result);
             res.json(result);
         })
 
