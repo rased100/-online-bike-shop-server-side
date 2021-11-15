@@ -28,24 +28,14 @@ async function run() {
             res.send(products);
         })
 
-        // GET Orders API
+        // Get Orders API
         app.get('/orders', async (req, res) => {
             const cursor = orderCollection.find({});
             const orders = await cursor.toArray();
             res.send(orders);
         });
 
-        // app.get('/orders', async (req, res) => {
-        //     const email = req.query.email;
-        //     const query = { email: email }
-        //     const cursor = orderCollection.find(query);
-        //     const orders = await cursor.toArray();
-        //     res.send(orders);
-        // })
-
-
-        // my orders
-
+        // get my orders api
         app.get('/myorders', async (req, res) => {
             const email = req.query.email;
             const query = { email: email }
@@ -54,36 +44,30 @@ async function run() {
             res.send(myorders);
         })
 
-        // my orders
-
+        // get my orders api
         app.get('/product/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const product = await productCollection.findOne(query);
-            // console.log('load product with id: ', id);
             res.send(product);
         })
 
+        // post orders
         app.post('/orders', async (req, res) => {
             const order = req.body;
             const result = await orderCollection.insertOne(order);
-            console.log(result);
+            // console.log(result);
             res.json(result);
         })
 
+        // post comments
         app.post('/comments', async (req, res) => {
             const comment = req.body;
             const result = await commentCollection.insertOne(comment);
-            // console.log('cmt', result);
             res.json(result);
         })
 
-        // app.get('/orders', async (req, res) => {
-        //     const cursor = orderCollection.find({});
-        //     const orders = await cursor.toArray();
-        //     res.send(orders);
-        // });
-
+        // get comments api
         app.get('/comments', async (req, res) => {
             const cursor = commentCollection.find({});
             const comments = await cursor.toArray();
@@ -96,22 +80,10 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const result = await orderCollection.deleteOne(query);
 
-            console.log('deleting user with id ', result);
+            // console.log('deleting user with id ', result);
 
             res.json(result);
         })
-
-
-        // DELETE API
-        // app.delete('/users/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const result = await usersCollection.deleteOne(query);
-
-        //     console.log('deleting user with id ', result);
-
-        //     res.json(result);
-        // })
     }
     finally {
         // await client.close();
