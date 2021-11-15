@@ -25,14 +25,35 @@ async function run() {
             const cursor = productCollection.find({});
             const products = await cursor.toArray();
             res.send(products);
-        });
+        })
 
-        //GET Orders API
+        // GET Orders API
         app.get('/orders', async (req, res) => {
             const cursor = orderCollection.find({});
             const orders = await cursor.toArray();
             res.send(orders);
         });
+
+        // app.get('/orders', async (req, res) => {
+        //     const email = req.query.email;
+        //     const query = { email: email }
+        //     const cursor = orderCollection.find(query);
+        //     const orders = await cursor.toArray();
+        //     res.send(orders);
+        // })
+
+
+        // my orders
+
+        app.get('/myorders', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email }
+            const cursor = orderCollection.find(query);
+            const myorders = await cursor.toArray();
+            res.send(myorders);
+        })
+
+        // my orders
 
         app.get('/product/:id', async (req, res) => {
             const id = req.params.id;
@@ -40,14 +61,37 @@ async function run() {
             const product = await productCollection.findOne(query);
             // console.log('load product with id: ', id);
             res.send(product);
-        });
+        })
 
         app.post('/orders', async (req, res) => {
             const order = req.body;
             const result = await orderCollection.insertOne(order);
             console.log(result);
             res.json(result);
-        });
+        })
+
+        // DELETE API
+        app.delete('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await orderCollection.deleteOne(query);
+
+            console.log('deleting user with id ', result);
+
+            res.json(result);
+        })
+
+
+        // DELETE API
+        // app.delete('/users/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const query = { _id: ObjectId(id) };
+        //     const result = await usersCollection.deleteOne(query);
+
+        //     console.log('deleting user with id ', result);
+
+        //     res.json(result);
+        // })
     }
     finally {
         // await client.close();
