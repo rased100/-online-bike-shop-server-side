@@ -78,6 +78,18 @@ async function run() {
             res.json(result);
         })
 
+        // app.get('/orders', async (req, res) => {
+        //     const cursor = orderCollection.find({});
+        //     const orders = await cursor.toArray();
+        //     res.send(orders);
+        // });
+
+        app.get('/comments', async (req, res) => {
+            const cursor = commentCollection.find({});
+            const comments = await cursor.toArray();
+            res.send(comments);
+        });
+
         // DELETE API
         app.delete('/orders/:id', async (req, res) => {
             const id = req.params.id;
