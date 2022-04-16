@@ -1,21 +1,17 @@
-﻿# niche-website-server-side-rased100
+# [Online Bike Shop](https://sun-motorbike.web.app/)
+## About this website
+    •	Clients can order Bike as well as monitor their orders.
 
-# Sun MotorBike
+    •	Admin can approve orders, and add products and make another admin.
 
-Live site: https://sun-motorbike.web.app
+    •	Client and admin must login/Register on this website.
 
-Client site code link: https://github.com/rased100/online-bike-shop-client-side
+    
+[live-site-link](https://sun-motorbike.web.app/) || [Client-Site-Code](https://github.com/rased100/online-bike-shop-client) || [Server-Site-Code](https://github.com/rased100/online-bike-shop-server)
 
-Server site code link: https://github.com/rased100/online-bike-shop-server-side
+### Used Technologies: 
+**React JS, Node JS, Express JS, MongoDB, MUI, Firebase and Bootstrap**
 
-
-
-- This website about Motorbikes.
-
-- In this website user can register with email and password.
-
-- Users can see there individual orders.
-
-- User can buy there choice bikes.
-
-- This website made with React, React Router, mui, Bootstrap, Javascript, Firebase, heroku.
+## Developer
+[Md Rasedul Islam](https://github.com/rased100/)
+    
